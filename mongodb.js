@@ -19,45 +19,47 @@ MongoClient.connect(connectionURL, {useNewUrlParser: true},(error, client)=>{
 
     const db = client.db(databaseName)
 
-    // db.collection('users').findOne({name:'Jen'},(error,user)=>{
-    // db.collection('users').findOne({name:'Jen', age:1},(error,user)=>{ //gives null
-    // db.collection('users').findOne({_id:"61422b25269cdae3ecf827b0"},(error,user)=>{ //_id is binary value - so gives null
-    // db.collection('users').findOne({_id:new ObjectId("61422b25269cdae3ecf827b0")},(error,user)=>{    
-    //     if (error) {
-    //         return console.log('Unable to fetch')
-    //     }
+        //using promises
 
-    //     console.log(user)
+    // const updatePromise = db.collection('users').updateOne({
+    //     _id: new ObjectId('61422b25269cdae3ecf827af')
+    // },{
+    //     $set:{
+    //         name:'Mike'
+    //     }
     // })
 
-    // db.collection('users').find({age:27}).toArray((error,users)=>{
-    //     if (error) {
-    //         return console.log('Unable to fetch')
-    //     }
-
-    //     console.log(users)
+    // updatePromise.then((result)=>{
+    //     console.log(result)
+    // }).catch((error)=>{
+    //     console.log(error)
     // })
 
-    // db.collection('users').find({age:27}).count((error,count)=>{
-    //     if (error) {
-    //         return console.log('Unable to fetch')
-    //     }
-
-    //     console.log(count)
-    // })
-
-    db.collection('tasks').findOne({_id:new ObjectId('6142301ff28ac40faa7e73f3')},(error,task)=>{
-        if (error) {
-            return console.log('Unable to fetch')
+    db.collection('users').updateOne({
+        _id: new ObjectId('61422b25269cdae3ecf827af')
+    },{
+        // $set:{
+        //     name:'Mike'
+        // }
+        $inc:{
+            age: 1
         }
-        console.log(task)
+    }).then((result)=>{
+        console.log(result)
+    }).catch((error)=>{
+        console.log(error)
     })
 
-    db.collection('tasks').find({completed:false}).toArray((error,tasks)=>{
-        if (error) {
-            return console.log('Unable to fetch')
+    db.collection('tasks').updateMany({
+        completed: false
+    },{
+        $set:{
+            completed:true
         }
-        console.log(tasks)
+    }).then((result)=>{
+        console.log(result.modifiedCount)
+    }).catch((error)=>{
+        console.log(error)
     })
 
 })
