@@ -49,7 +49,8 @@ const userSchema = new mongoose.Schema({
     }]
     
 })
-//methods - instance methods
+
+//Methods(instance methods) are accessible on instances
 userSchema.methods.generateAuthToken = async function () {
     const user = this
     const token = jwt.sign({_id:user._id.toString},'thisismynewcourse')
@@ -60,6 +61,7 @@ userSchema.methods.generateAuthToken = async function () {
     return token
 }
 
+//Statics methods(modal methods) are accessible on modal
 userSchema.statics.findByCredentials = async (email, password)=>{
     const user = await User.findOne({email})
 
