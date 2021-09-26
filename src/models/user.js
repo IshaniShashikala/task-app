@@ -50,7 +50,18 @@ const userSchema = new mongoose.Schema({
     
 })
 
-//Methods(instance methods) are accessible on instances
+// userSchema.methods.getPublicProfile = function () {
+userSchema.methods.toJSON = function () {
+    const user = this
+    const userObject = user.toObject()
+
+    delete userObject.password
+    delete userObject.tokens
+
+    return userObject
+}
+
+//Methods(instance methods) are accessible on instances- methods on the intance and individual user
 userSchema.methods.generateAuthToken = async function () {
     const user = this
     const token = jwt.sign({_id:user._id.toString()},'thisismynewcourse')
@@ -61,7 +72,7 @@ userSchema.methods.generateAuthToken = async function () {
     return token
 }
 
-//Statics methods(modal methods) are accessible on modal
+//Statics methods(modal methods) are accessible on modal - methods on actual User model
 userSchema.statics.findByCredentials = async (email, password)=>{
     const user = await User.findOne({email})
 

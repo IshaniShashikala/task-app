@@ -28,17 +28,28 @@ app.listen(port, ()=>{
     console.log('Server is up on ' + port)
 })
 
-const jwt = require('jsonwebtoken')
+// const pet = {
+//     name: 'Mat'
+// }
+// pet.toJSON = function () {
+//     // console.log(this)
+//     // return this
+//     return {}
+// }
 
-const myFunction =async ()=>{
-    const token = jwt.sign({_id:'abc123'},'thisismynewcourse',{expiresIn:'7 days'}) //generate authentication tokens
-    console.log(token)
+// console.log(JSON.stringify(pet))
 
-    const data =jwt.verify(token, 'thisismynewcourse') //verify user is authenticated correctly
-    console.log(data)
-}
+// const jwt = require('jsonwebtoken')
 
-myFunction()
+// const myFunction =async ()=>{
+//     const token = jwt.sign({_id:'abc123'},'thisismynewcourse',{expiresIn:'7 days'}) //generate authentication tokens
+//     console.log(token)
+
+//     const data =jwt.verify(token, 'thisismynewcourse') //verify user is authenticated correctly
+//     console.log(data)
+// }
+
+// myFunction()
 
 // // using bcrypt - test code
 // const bcrypt = require('bcryptjs')
