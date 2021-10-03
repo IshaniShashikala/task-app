@@ -6,6 +6,17 @@ const taskRouter = require('./routers/task')
 const app = express()
 const port = process.env.PORT || 3000
 
+const multer = require ('multer')
+const upload = multer({
+    dest: 'images'
+})
+
+app.post('/upload', upload.single('upload'), (req, res) =>{
+    res.send()
+})
+
+
+//setup own authentication middleware
 // app.use((req, res, next)=>{
 //     // console.log(req.method, req.path)
 //     // next()
@@ -28,20 +39,23 @@ app.listen(port, ()=>{
     console.log('Server is up on ' + port)
 })
 
-const Task = require('./models/task')
-const User = require('./models/user')
 
-const main = async () => {
-    // const task = await Task.findById('61507641dda84c32da5bbf67')
-    // await task.populate('owner')
-    // console.log(task.owner)
 
-    const user = await User.findById('6154a86ba8c77e3e65e1ee0d')
-    await user.populate('tasks')
-    console.log(user.tasks)
-}
 
-main()
+// const Task = require('./models/task')
+// const User = require('./models/user')
+
+// const main = async () => {
+//     // const task = await Task.findById('61507641dda84c32da5bbf67')
+//     // await task.populate('owner')
+//     // console.log(task.owner)
+
+//     const user = await User.findById('6154a86ba8c77e3e65e1ee0d')
+//     await user.populate('tasks')
+//     console.log(user.tasks)
+// }
+
+// main()
 
 // const pet = {
 //     name: 'Mat'
