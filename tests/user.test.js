@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose')
 const app = require('../src/app')
 const User = require('../src/models/user')
-const { response } = require('express')
 
 const userOneId = new mongoose.Types.ObjectId()
 
@@ -55,7 +54,7 @@ test('Should login exsisting user', async()=>{
         email: userOne.email,
         password: userOne.password
     }).expect(200)
-    
+
     //validate new token is saved
     const user = await User.findById(userOneId)
     expect(response.body.token).toBe(user.tokens[1].token)
