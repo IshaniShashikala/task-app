@@ -29,6 +29,8 @@ Install dependencies
   npm install
 ```
 
+Setup dev.env and test.dev files with PORT, SENDGRID_API_KEY, MONGODB_URL, JWT_SECRET inside ./config/dev.env
+
 Start the server
 
 ```bash
