@@ -1,6 +1,7 @@
 # task-manager
 
-This is a nodejs project with A task manager REST API complete with user accounts and authentication
+This is a nodejs project with A task manager REST API complete with user accounts and authentication which is deployed in heroku.
+Prod Env : https://ishani-task-manager.herokuapp.com/  
 
 ## Tech Stack
 
